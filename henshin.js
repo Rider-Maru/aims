@@ -109,8 +109,8 @@ function JudgeAutorize(value) {
 // 効果音を鳴らす（★今回のメインはこれ★）
 // ========================================
 function ring(num) {
-    alert("ring");
-    if (AutorizedNum == 2 &&isAuthorizable) {
+    
+    if (AutorizeNum == 2 &&isAuthorizable) {
         onAuthorize = false;
         playSE(3 + progriseKeyNum * 2);
         isAuthorizable = false;
