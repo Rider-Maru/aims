@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+        <style type="text/css">
+            body {
+                font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic", sans-serif;
+        
+            }
+        
+            div.omikujibase {}
+        
+            #square-button_da {
+                
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                text-indent: -999px;
+                z-index: 2;
+                /* 必要であればリンク要素の重なりのベース順序指定 */
+            }
+        
+            #square-button2 {
+                height: 100%;
+                left: 0px;
+               
+                top: 0px;
+                width: 100%;
+                opacity: 1;
+            }
+        
+            p.button {
+                width: 149px;
+                text-align: center;
+                margin: 5px 0px;
+            }
+        
+            /* 外枠：この装飾は無くても構いません */
+            div.playground {
+                margin: 1em 0px;
+                padding: 1em;
+                border: 1px solid gray;
+            }
+        
+            .swiper-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        
+            .swiper-slide {
+                
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="http://img.2chan.net/b/src/1570205330327.jpg"
+                    alt="Swiper01" id=square-button2></div>
+            <div class="swiper-slide"><img src="picture/key_rising_hopper.png" id=square-button2></img></div>
+            <div class="swiper-slide"><img src="https://haniwaman.com/wp-content/uploads/2018/05/swiper03.png"
+                    alt="Swiper03"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+                loop: false,
+            });
+    </script>
+</body>
+
+</html>

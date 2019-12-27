@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>ZERO-One</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+    <style type="text/css">
+        body {
+            font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic", sans-serif;
+
+        }
+
+        div.omikujibase {}
+
+        #square-button {
+left: 50%;
+	min-height: 100%;
+	min-width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+            opacity: 1;
+            text-indent: -999px;
+            z-index: 2;
+            /* 必要であればリンク要素の重なりのベース順序指定 */
+        }
+
+        #square-button2 {
+left: 50%;
+	min-height: 100%;
+	min-width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+            opacity: 1;
+        }
+
+        p.button {
+            width: 149px;
+            text-align: center;
+            margin: 5px 0px;
+        }
+
+        /* 外枠：この装飾は無くても構いません */
+        div.playground {
+            margin: 1em 0px;
+            padding: 1em;
+            border: 1px solid gray;
+        }
+
+        .swiper-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <!--<button id="square-button2" type="submit"><img src="picture/key_rising_hopper.png" /></button>
+	<button id="square-button" type="submit" onclick="ring();"><img src="picture/key_rising_hopper.png" /></button>
+	-->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="picture/key_rising_hopper.png" id=square-button2></img>
+                <a href="#" onclick="ring();" id=square-button>
+                    <img src="picture/key_rising_hopper_light.png" id=square-button></img>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                                <img src="picture/key_rising_hopper.png" id=square-button2></img>
+                                <a href="#" onclick="ring();" id=square-button>
+                                    <img src="picture/key_rising_hopper_light.png" id=square-button></img>
+                                </a>
+            </div>
+            <div class="swiper-slide">
+                                <img src="picture/key_rising_hopper.png" id=square-button2></img>
+                                <a href="#" onclick="ring();" id=square-button>
+                                    <img src="picture/key_rising_hopper_light.png" id=square-button></img>
+                                </a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+        });
+    </script>
+    <!--<img src="picture/key_rising_hopper.png" id = square-button2 ></img>
+	
+	<a href ="#" onclick="ring();" id=square-button>
+		<img src="picture/key_rising_hopper_light.png" id=square-button2></img>
+	</a>
+	-->
+    <!--<button id="square-button" type="submit" onclick="ring();"><img src="picture/key_rising_hopper.png" /></button>
+	-->
+
+    <video id="video" autoplay playsinline="true"></video>
+    <canvas id="canvas" hidden></canvas>
+    <div id="str">このタグの中身を書き換えます。</div>
+    <div id="debug">このタグの中身を書き換えます。</div>
+    <div id="debug_bool">このタグの中身を書き換えます。</div>
+    <div id="debug_gain">このタグの中身を書き換えます。</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,
+    });
+    function ring(){
+        console.log(swiper.realIndex);
+    }
+</script>
+
+
+
+</html>
