@@ -116,7 +116,7 @@ function ring(num) {
         setTimeout(function () {
             if (onRingingStandby) isAuthorizable = true;
         }, 3000)
-        AutorizeNum++;
+        AutorizeNum==0;
         if (AutorizeNum > 3) AutorizeNum = 1;
         document.getElementById("debug_bool").textContent = "false";
     }
