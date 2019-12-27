@@ -99,7 +99,7 @@ var lightLayer = document.getElementsByClassName('square-button');
     bufferLoader.load();
     function finishedLoading(bufferList) {
         //el = document.getElementsByClassName("sound");
-        alert("ロードが完了しました12/28");
+        alert("ロードが完了しました");
         finishAudioLoading();
         for (var i = 0; i < bufferList.length; i++) {
             var source = context.createBufferSource();

@@ -110,7 +110,9 @@ function JudgeAutorize(value) {
 // ========================================
 function ring(num) {
     
-    if (AutorizeNum == 2 &&isAuthorizable) {
+    if (AutorizeNum == 2 && isAuthorizable) {
+        SEstandbyStop();
+        alert("ring()");
         onAuthorize = false;
         playSE(3 + progriseKeyNum * 2);
         isAuthorizable = false;
@@ -128,8 +130,9 @@ function ring(num) {
         
         playSECallKey(progriseKeyNum);
         playSECallKey(progriseKeyNum);
+        SEstandbyStop();
+
     }
-    SEstandbyStop();
 }
 
 
