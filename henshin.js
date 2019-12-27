@@ -5,7 +5,7 @@ var SE_progrise = document.getElementById("Sound_Zero-One:3");
 var SE_standby = document.getElementById("Sound_Zero-One:standby");
 
 var isPushKey = false;
-var isAuthorizable = false;
+var isAuthorizable = true;
 var onStandBy = false;
 var onAuthorize = false;
 
@@ -113,21 +113,20 @@ function ring(num) {
     if (onAuthorize&&isAuthorizable) {
         onAuthorize = false;
         playSE(3 + progriseKeyNum * 2);
-        isAuthorizable = false;
-        setTimeout(function () {
-            if (onRingingStandby) isAuthorizable = true;
-        }, 3000)
         AutorizeNum++;
         if (AutorizeNum > 3) AutorizeNum = 1;
         document.getElementById("debug_bool").textContent = "false";
     }
     else {
         progriseKeyNum = num;
-        isAuthorizable = true;
         AutorizeNum = 1;
         playSECallKey(progriseKeyNum);
         playSECallKey(progriseKeyNum);
     }
+    isAuthorizable = false;
+    setTimeout(function () {
+        if (onRingingStandby) isAuthorizable = true;
+    }, 3000)
     SEstandbyStop();
 }
 
