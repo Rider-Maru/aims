@@ -5,7 +5,7 @@ var SE_progrise = document.getElementById("Sound_Zero-One:3");
 var SE_standby = document.getElementById("Sound_Zero-One:standby");
 
 var isPushKey = false;
-var isAuthorizable = true;
+var isAuthorizable = false;
 var onStandBy = false;
 var onAuthorize = false;
 
@@ -87,18 +87,17 @@ video.addEventListener("loadedmetadata", function (e) {
 
 
 function JudgeAutorize(value) {
-    if (value > threshold) {
+    if (value < threshold) {
         if (!onAuthorize) {
             onAuthorize = true;
-            ringByCamera(1);
             document.getElementById("debug_bool").textContent = "true";
         }
  
     }
     else {
-        if (false) {
+        if (onAuthorize) {
             onAuthorize = false;
-            ringByCamera(2);
+            ringByCamera(1);
             document.getElementById("debug_bool").textContent = "false";
         }
        
@@ -110,23 +109,24 @@ function JudgeAutorize(value) {
 // 効果音を鳴らす（★今回のメインはこれ★）
 // ========================================
 function ring(num) {
-    if (onAuthorize&&isAuthorizable) {
+    if (AutorizedNum == 2 &&isAuthorizable) {
         onAuthorize = false;
         playSE(3 + progriseKeyNum * 2);
+        isAuthorizable = false;
+        setTimeout(function () {
+            if (onRingingStandby) isAuthorizable = true;
+        }, 3000)
         AutorizeNum++;
         if (AutorizeNum > 3) AutorizeNum = 1;
         document.getElementById("debug_bool").textContent = "false";
     }
     else {
         progriseKeyNum = num;
+        isAuthorizable = true;
         AutorizeNum = 1;
         playSECallKey(progriseKeyNum);
         playSECallKey(progriseKeyNum);
     }
-    isAuthorizable = false;
-    setTimeout(function () {
-        if (onRingingStandby) isAuthorizable = true;
-    }, 3000)
     SEstandbyStop();
 }
 
