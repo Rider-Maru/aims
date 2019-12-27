@@ -124,6 +124,7 @@ function ring(num) {
         progriseKeyNum = num;
         isAuthorizable = true;
         AutorizeNum = 1;
+        alert("ring");
         playSECallKey(progriseKeyNum);
         playSECallKey(progriseKeyNum);
     }
