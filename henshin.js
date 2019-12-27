@@ -112,7 +112,6 @@ function ring(num) {
     
     if (AutorizeNum == 2 && isAuthorizable) {
         SEstandbyStop();
-        alert("ring()");
         onAuthorize = false;
         playSE(3 + progriseKeyNum * 2);
         isAuthorizable = false;
