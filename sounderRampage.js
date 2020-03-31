@@ -110,11 +110,16 @@ function finishedLoading(bufferList) {
         context,
         [
             'audio/rampageBallet.mp3',
-            'audio/shootingWolf.mp3',
-            'audio/shooting.mp3',
             'audio/rampageBallet2.mp3',
-            'audio/rushingCheetah.mp3',
-            'audio/rushing.mp3',
+            'audio/shootingWolf.mp3',
+            'audio/PowerRampage.mp3',
+            'audio/RampagePower.mp3',
+            'audio/SpeedRampage.mp3',
+            'audio/RampageSpeed.mp3',
+            'audio/ElementRampage.mp3',
+            'audio/RampageElement.mp3',
+            'audio/AllRampage.mp3',
+            'audio/RampageAll.mp3',
             /*
             'audio/.mp3',
             'audio/.mp3',
@@ -143,7 +148,7 @@ function playSECallKey(callNum) {
         return;
     }
     console.log("Key" + num);
-    var num = callNum * 3;
+    var num = callNum;
 
     soundArrayKey[num].connect(analyser);
     soundArrayKey[num].start(0);
@@ -175,10 +180,10 @@ function playSECallFunction(callNum) {
 }
 
 function playSECallFinish(callNum) {
-    var num = 2 + callNum * 3;
+    var num = 1 + callNum * 2;
     stopSE();
     nowplaynumCommon = 3;
-    if (callNum == AssaultWolfNum) nowplaynumCommon = 6;
+    //if (callNum == AssaultWolfNum) nowplaynumCommon = 6;
     console.log("Finish" + num);
     soundArrayCommon[nowplaynumCommon].connect(analyser);
     soundArrayCommon[nowplaynumCommon].start(0);
