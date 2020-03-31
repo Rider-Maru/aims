@@ -7,7 +7,9 @@ var onStandBy = false;
 var onAuthorize = false;
 
 var preRingNum;
-var preSlideNum;
+var preSlideNum=0;
+
+var rampageNum= 0;
 
 
 //var mySwiper.realIndex = 0;
@@ -57,11 +59,21 @@ video.addEventListener("loadedmetadata", function (e) {
     //毎フレームの実行処理
     setInterval(function (e) {
         if (mySwiper.realIndex != preSlideNum) {
-            isAuthorizable = true;
             SEstandbyStop();
-            AutorizeNum = 1;
             playSERotate();
-            playSECallKey(1);
+            if (AutorizeNum == 3) {
+                rampageNum++;
+                if (rampageNum > 4) rampageNum = 4;
+                SEstandbyStop();
+                onStandBy = true;
+                playSEFinishReady(mySwiper.realIndex);
+                AutorizeNum = 4;
+            }
+            else {
+                isAuthorizable = true;
+                AutorizeNum = 1;
+                playSECallKey(1);
+            }
         }
         preSlideNum = mySwiper.realIndex;
 
@@ -127,12 +139,7 @@ function ring() {
             }, 1000)
             AutorizeNum == 0;
             AutorizeNum = 3;
-        } else if (AutorizeNum == 3) {
-            SEstandbyStop();
-            onStandBy = true;
-            playSEFinishReady(mySwiper.realIndex);
-            AutorizeNum = 4;
-        } else if (AutorizeNum == 4) {
+        }  else if (AutorizeNum == 4) {
             SEstandbyStop();
             playSECallFinish(mySwiper.realIndex);
             AutorizeNum = 3;
