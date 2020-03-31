@@ -1,8 +1,13 @@
-var soundArray = [];
-var bufferListUp = [];
+var soundArrayKey = [];
+var soundArrayCommon = [];
+var bufferListUpCommon = [];
+var bufferListUpKey = [];
 var nowplay;
-var nowplaynum;
+var nowplaynumKey;
+var nowplaynumCommon;
 var onRingingStandby = false;
+
+var AssaultWolfNum= 2;
 
     function BufferLoader(context, urlList, callback) {
         this.context = context;
@@ -80,94 +85,141 @@ var lightLayer = document.getElementsByClassName('square-button');
 //-------------------------------------------
 
 //context = new AudioContext();
+bufferLoader = new BufferLoader(
+    context,
+    [
+        'audio/authorize.mp3',
+        'audio/standbyLoop.mp3',
+    ],
+    finishedLoading
+);
+bufferLoader.load();
+function finishedLoading(bufferList) {
+    for (var i = 0; i < bufferList.length; i++) {
+        var source = context.createBufferSource();
+        source.buffer = bufferList[i];
+        bufferListUpCommon[i] = bufferList[i];
+        source.connect(context.destination);
+        soundArrayCommon.push(source);
+    }
     bufferLoader = new BufferLoader(
         context,
         [
-            'audio/authorize.mp3',
-            'audio/standbyLoop.mp3',
             'audio/ballet.mp3',
+            'audio/shootingWolf.mp3',
             'audio/shootingWolf.mp3',
             'audio/dash.mp3',
             'audio/rushingCheetah.mp3',
-            'audio/fang.mp3',
-            'audio/bitingShark.mp3',
-            'audio/fire.mp3',
-            'audio/flamingTiger.mp3',
+            'audio/rushingCheetah.mp3',
+            /*
+            'audio/.mp3',
+            'audio/.mp3',
+            'audio/.mp3',
+            */
         ],
         finishedLoading
     );
     bufferLoader.load();
     function finishedLoading(bufferList) {
-        //el = document.getElementsByClassName("sound");
         alert("ロードが完了しました");
         finishAudioLoading();
         for (var i = 0; i < bufferList.length; i++) {
             var source = context.createBufferSource();
             source.buffer = bufferList[i];
-            bufferListUp[i] = bufferList[i];
+            bufferListUpKey[i] = bufferList[i];
             source.connect(context.destination);
-            soundArray.push(source);
+            soundArrayKey.push(source);
         }
+    }
 }
 
 function playSECallKey(callNum) {
-    if (soundArray[0]== null) {
+    if (soundArrayKey[0] == null) {
         alert('オーディオデータをロード中です');
         return;
     }
-    var num = 2;
-    num += callNum * 2;
+    console.log("Key" + num);
+    var num = callNum * 3;
 
-    soundArray[num].connect(analyser);
-    soundArray[num].start(0);
-    soundArray[num] = context.createBufferSource();
-    soundArray[num].buffer = bufferListUp[num];
-    soundArray[num].connect(context.destination);
-    
+    soundArrayKey[num].connect(analyser);
+    soundArrayKey[num].start(0);
+    soundArrayKey[num] = context.createBufferSource();
+    soundArrayKey[num].buffer = bufferListUpKey[num];
+    soundArrayKey[num].connect(context.destination);
 }
 
-function playSE(num) {
-    /*
-    nowplay = soundArray[num];
-    nowplaynum = num;
-    nowplay.start(0);
-    */
-    nowplaynum = num;
+function playSECallFunction(callNum) {
+    var num = 1 + callNum * 3;
+    nowplaynumKey = num;
+    console.log("Function" + num);
+    soundArrayKey[nowplaynumKey].connect(analyser);
+    soundArrayKey[nowplaynumKey].start(0);
+}
 
-    soundArray[nowplaynum].connect(analyser);
-    soundArray[nowplaynum].start(0);
-    if (nowplaynum == 0) {
-        soundArray[0].onended = function () {
-            if (nowplaynum == null) return;
-            soundArray[1].loop = true;
-            soundArray[1].start(0);
-            onRingingStandby = true;
+function playSECallFinish(callNum) {
+    var num = 2 + callNum * 3;
+    stopSE();
+    nowplaynumCommon = 2;
+    if (callNum == AssaultWolfNum) nowplaynumCommon = 6;
+    console.log("Finish" + num);
+    soundArrayCommon[nowplaynumCommon].connect(analyser);
+    soundArrayCommon[nowplaynumCommon].start(0);
+    soundArrayCommon[nowplaynumCommon].onended = function () {
+        if (nowplaynumCommon == null) return;
+        stopSE();
+        nowplaynumCommon = null;
+        nowplaynumKey = num;
+        soundArrayKey[num].connect(analyser);
+        soundArrayKey[num].start(0);
+        soundArrayKey[num].onended = function () {
+            if (nowplaynumKey == null) return;
+            stopSE();
+            nowplaynumCommon = 3;
+            nowplaynumKey = null;
+            soundArrayCommon[3].connect(analyser);
+            soundArrayCommon[3].start(0);
         }
     }
-    
-    /*
-    soundArray[num].start(0);
-    soundArray[num] = context.createBufferSource();
-    soundArray[num].buffer = bufferListUp[num];
-    soundArray[num].connect(context.destination);
-    */
+}
+
+function playSEBelt(callNum) {
+    var num = 0;
+    if (callNum == AssaultWolfNum) num = 5;
+
+    nowplaynumCommon = num;
+    console.log("Belt" + num);
+    soundArrayCommon[num].connect(analyser);
+    soundArrayCommon[num].start(0);
+    soundArrayCommon[num].onended = function () {
+        if (nowplaynumCommon == null) return;
+        soundArrayCommon[1].loop = true;
+        soundArrayCommon[1].start(0);
+        onRingingStandby = true;
+    }
 }
 
 function stopSE() {
-    if (nowplaynum == null) return;
-    soundArray[nowplaynum].stop();
-    soundArray[nowplaynum] = context.createBufferSource();
-    soundArray[nowplaynum].buffer = bufferListUp[nowplaynum];
-    soundArray[nowplaynum].connect(context.destination);
-    
-    nowplaynum = null;
+    if (nowplaynumCommon != null) {
+        soundArrayCommon[nowplaynumCommon].stop();
+        soundArrayCommon[nowplaynumCommon] = context.createBufferSource();
+        soundArrayCommon[nowplaynumCommon].buffer = bufferListUpCommon[nowplaynumCommon];
+        soundArrayCommon[nowplaynumCommon].connect(context.destination);
+        nowplaynumCommon = null
+    }
+    if (nowplaynumKey != null) {
+        soundArrayKey[nowplaynumKey].stop();
+        soundArrayKey[nowplaynumKey] = context.createBufferSource();
+        soundArrayKey[nowplaynumKey].buffer = bufferListUpKey[nowplaynumKey];
+        soundArrayKey[nowplaynumKey].connect(context.destination);
+        nowplaynumKey = null;
+    }
 }
 
 function stopStandbySE() {
     if (!onRingingStandby) return;
-    soundArray[1].stop();
-    soundArray[1] = context.createBufferSource();
-    soundArray[1].buffer = bufferListUp[1];
-    soundArray[1].connect(context.destination);
+    soundArrayCommon[1].stop();
+    soundArrayCommon[1] = context.createBufferSource();
+    soundArrayCommon[1].buffer = bufferListUpCommon[1];
+    soundArrayCommon[1].connect(context.destination);
     onRingingStandby = false;
 }

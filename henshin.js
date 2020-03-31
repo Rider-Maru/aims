@@ -1,16 +1,15 @@
 var ClickNum = 0;
 var AutorizeNum = 0;
-var SE_authorize = document.getElementById("Sound_Zero-One:2");
-var SE_progrise = document.getElementById("Sound_Zero-One:3");
-var SE_standby = document.getElementById("Sound_Zero-One:standby");
 
 var isPushKey = false;
 var isAuthorizable = false;
 var onStandBy = false;
 var onAuthorize = false;
 
+var preRingNum;
 
-var progriseKeyNum = 0;
+
+//var mySwiper.realIndex = 0;
 
 var threshold = 23;
 //videoタグを取得
@@ -18,8 +17,8 @@ var video = document.getElementById("video");
 //取得するメディア情報を指定
 var medias = { audio: false, video: {} };
 
-var swiper = new Swiper('.swiper-container', {
-    loop: false,
+var mySwiper = new Swiper('.swiper-container', {
+    loop: true,
 });
 
 function finishAudioLoading() {
@@ -108,27 +107,25 @@ function JudgeAutorize(value) {
 // ========================================
 // 効果音を鳴らす（★今回のメインはこれ★）
 // ========================================
-function ring(num) {
-    
+function ring() {
+    if (preRingNum != mySwiper.realIndex) {
+        AutorizeNum == 1;
+        isAuthorizable == false;
+    }
     if (AutorizeNum == 2 && isAuthorizable) {
         SEstandbyStop();
         onAuthorize = false;
-        playSE(3 + progriseKeyNum * 2);
+        playSEBelt(mySwiper.realIndex)
         isAuthorizable = false;
         setTimeout(function () {
             if (onRingingStandby) isAuthorizable = true;
         }, 3000)
         AutorizeNum==0;
-        if (AutorizeNum > 3) AutorizeNum = 1;
-        document.getElementById("debug_bool").textContent = "false";
     }
     else {
-        progriseKeyNum = num;
         isAuthorizable = true;
         AutorizeNum = 1;
-        
-        playSECallKey(progriseKeyNum);
-        playSECallKey(progriseKeyNum);
+        playSECallKey(mySwiper.realIndex);
         SEstandbyStop();
 
     }
@@ -136,23 +133,21 @@ function ring(num) {
 
 
 function ringByCamera(callNum) {
-    if (callNum != AutorizeNum) return;
-
-    if (AutorizeNum < 3 && isAuthorizable) {
-        if (onStandBy) SEstandbyStop();
-        if (AutorizeNum == 1) {
-            onStandBy = true;
-            playSE(0);
-        } else if (AutorizeNum == 2) {
-            playSE(3 + progriseKeyNum *2);
-        }
+    var isRing = false;
+    if (!isAuthorizable) return;
+    if (onStandBy) SEstandbyStop();
+    if (callNum == 1 && AutorizeNum == 1) {
+        isRing = true;
+        onStandBy = true;
+        playSEBelt(mySwiper.realIndex);
+    }
+    if (isRing) {
         isAuthorizable = false;
         setTimeout(function () {
-            if (onRingingStandby)isAuthorizable = true;
-        }, 3000)
+            if (onRingingStandby || AutorizeNum == 3) isAuthorizable = true;
+        }, 1000)
 
-        AutorizeNum++;
-        if (AutorizeNum > 3) AutorizeNum = 1;
+        if (AutorizeNum < 3) AutorizeNum++;
     }
 }
 
