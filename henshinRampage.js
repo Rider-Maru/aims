@@ -66,7 +66,7 @@ video.addEventListener("loadedmetadata", function (e) {
                 if (rampageNum > 4) rampageNum = 4;
                 SEstandbyStop();
                 onStandBy = true;
-                playSEFinishReady(mySwiper.realIndex);
+                playSEFinishReady(rampageNum);
                 AutorizeNum = 4;
             }
             else {
@@ -134,7 +134,7 @@ function ring() {
             SEstandbyStop();
             playSECallFunction();
             setTimeout(function () {
-                if (onRingingStandby) isAuthorizable = true;
+                if (onRingingStandby[0]) isAuthorizable = true;
             }, 1000)
             AutorizeNum == 0;
             AutorizeNum = 3;
@@ -142,7 +142,7 @@ function ring() {
             SEstandbyStop();
             
             playSECallFinish(rampageNum);
-            rampageNum == 0;
+            rampageNum = 0;
             AutorizeNum = 3;
         }
         else {
@@ -167,7 +167,7 @@ function ringByCamera(callNum) {
     if (isRing) {
         isAuthorizable = false;
         setTimeout(function () {
-            if (onRingingStandby || AutorizeNum == 3) isAuthorizable = true;
+            if (onRingingStandby[0] || AutorizeNum == 3) isAuthorizable = true;
         }, 1000)
 
         if (AutorizeNum < 3) AutorizeNum++;

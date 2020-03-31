@@ -5,9 +5,10 @@ var bufferListUpKey = [];
 var nowplay;
 var nowplaynumKey;
 var nowplaynumCommon;
-var onRingingStandby = false;
+var onRingingStandby = [false,false,false,false,false];
 
-var AssaultWolfNum= 2;
+var AssaultWolfNum = 2;
+
 
     function BufferLoader(context, urlList, callback) {
         this.context = context;
@@ -180,7 +181,7 @@ function playSECallFunction() {
 }
 
 function playSECallFinish(callNum) {
-    var num = 1 + callNum * 2;
+    var num = 2 + callNum * 2;
     stopSE();
     nowplaynumCommon = 3;
     //if (callNum == AssaultWolfNum) nowplaynumCommon = 6;
@@ -217,11 +218,11 @@ function playSEBelt(callNum) {
         if (nowplaynumCommon == null) return;
         soundArrayCommon[1].loop = true;
         soundArrayCommon[1].start(0);
-        onRingingStandby = true;
+        onRingingStandby[0] = true;
     }
 }
 function playSEFinishReady(callNum) {
-    var num = callNum * 3;
+    var num = 1+callNum * 2;
 
     nowplaynumKey = num;
     console.log("Belt" + num);
@@ -231,7 +232,7 @@ function playSEFinishReady(callNum) {
         if (nowplaynumKey == null) return;
         soundArrayCommon[2].loop = true;
         soundArrayCommon[2].start(0);
-        onRingingStandby = true;
+        onRingingStandby[num] = true;
     }
 }
 
@@ -253,7 +254,7 @@ function stopSE() {
 }
 
 function stopStandbySE() {
-    if (!onRingingStandby) return;
+    if (!onRingingStandby[0]) return;
     soundArrayCommon[1].stop();
     soundArrayCommon[1] = context.createBufferSource();
     soundArrayCommon[1].buffer = bufferListUpCommon[1];
@@ -262,7 +263,11 @@ function stopStandbySE() {
     onRingingStandby = false;
 }
 function stopStandbyFinishSE() {
-    if (!onRingingStandby) return;
+    var isStandBy = false;
+    for (const sw in onRingingStandby) {
+        if (sw) isStandBy = true;
+    }
+    if (!isStandBy) return;
     soundArrayCommon[2].stop();
     soundArrayCommon[2] = context.createBufferSource();
     soundArrayCommon[2].buffer = bufferListUpCommon[2];
