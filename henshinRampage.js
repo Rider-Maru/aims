@@ -69,7 +69,6 @@ video.addEventListener("loadedmetadata", function (e) {
             if (AutorizeNum >= 3) {
                 rampageNum++;
                 if (rampageNum > 4) rampageNum = 4;
-                SEstandbyStop();
                 onStandBy = true;
                 playSEFinishReady(rampageNum);
                 AutorizeNum = 4;
