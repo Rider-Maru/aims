@@ -59,11 +59,14 @@ video.addEventListener("loadedmetadata", function (e) {
     //毎フレームの実行処理
     setInterval(function (e) {
 
-        for (const property in onRingingStandby) {
-            console.log(`${property}: ${onRingingStandby[property]}`);
-        }
+        //for (const property in onRingingStandby) {
+            //console.log(`${property}: ${onRingingStandby[property]}`);
+        //}
 
         if (mySwiper.realIndex != preSlideNum) {
+            for (const property in onRingingStandby) {
+                console.log(`${property}: ${onRingingStandby[property]}`);
+            }
             SEstandbyStop();
             playSERotate();
             if (AutorizeNum >= 3) {
