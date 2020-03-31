@@ -190,7 +190,7 @@ function SEstandbyStop() {
     onStandBy = false;
     
     stopSE();
-    if (AutorizeNum == 4) stopStandbyFinishSE();
+    stopStandbyFinishSE();
     else stopStandbySE();
     
 }
