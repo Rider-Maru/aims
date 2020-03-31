@@ -112,7 +112,7 @@ function ring() {
         AutorizeNum == 1;
         isAuthorizable == false;
     }
-    preRingNum == mySwiper.realIndex;
+    preRingNum = mySwiper.realIndex;
     if (AutorizeNum == 2 && isAuthorizable) {
         SEstandbyStop();
         onAuthorize = false;
