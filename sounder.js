@@ -203,13 +203,12 @@ function playSEBelt(callNum) {
 function playSEFinishReady(callNum) {
     var num = callNum * 3;
 
-    nowplaynumCommon = num;
+    nowplaynumKey = num;
     console.log("Belt" + num);
     soundArrayKey[num].connect(analyser);
     soundArrayKey[num].start(0);
     soundArrayKey[num].onended = function () {
-        if (nowplaynumCommon == null) return;
-        stopSE();
+        if (nowplaynumKey == null) return;
         soundArrayCommon[2].loop = true;
         soundArrayCommon[2].start(0);
         onRingingStandby = true;
