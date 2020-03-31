@@ -130,16 +130,18 @@ function ring() {
         }
         else {
             isAuthorizable = true;
+            SEstandbyStop();
             AutorizeNum = 1;
             playSECallKey(mySwiper.realIndex);
-            SEstandbyStop();
+            
         }
     }
     else {
         isAuthorizable = true;
+        SEstandbyStop();
         AutorizeNum = 1;
         playSECallKey(mySwiper.realIndex);
-        SEstandbyStop();
+        
     }
     preRingNum = mySwiper.realIndex;
 }
@@ -175,7 +177,8 @@ function SEstandbyStop() {
     onStandBy = false;
     
     stopSE();
-    stopStandbySE();
+    if (AutorizeNum == 4) stopStandbyFinishSE();
+    else stopStandbySE();
     
 }
 

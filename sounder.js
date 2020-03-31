@@ -234,12 +234,15 @@ function stopSE() {
 
 function stopStandbySE() {
     if (!onRingingStandby) return;
-    var stopNum = 1;
     soundArrayCommon[1].stop();
     soundArrayCommon[1] = context.createBufferSource();
     soundArrayCommon[1].buffer = bufferListUpCommon[1];
     soundArrayCommon[1].connect(context.destination);
 
+    onRingingStandby = false;
+}
+function stopStandbyFinishSE() {
+    if (!onRingingStandby) return;
     soundArrayCommon[2].stop();
     soundArrayCommon[2] = context.createBufferSource();
     soundArrayCommon[2].buffer = bufferListUpCommon[1];
