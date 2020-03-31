@@ -88,9 +88,9 @@ var lightLayer = document.getElementsByClassName('square-button');
 bufferLoader = new BufferLoader(
     context,
     [
-        'audio/authorize.mp3',
+        'audio/Allrise.mp3',
         'audio/standbyLoop.mp3',
-        'audio/finishLoop.mp3',
+        'audio/finishLoopRampage.mp3',
         'audio/finish.mp3',
         'audio/blast.mp3',
         'audio/rotate.mp3'
@@ -111,7 +111,7 @@ function finishedLoading(bufferList) {
         [
             'audio/rampageBallet.mp3',
             'audio/rampageBallet2.mp3',
-            'audio/shootingWolf.mp3',
+            'audio/rampageGatring.mp3',
             'audio/powerRampage.mp3',
             'audio/RampagePower.mp3',
             'audio/SpeedRampage.mp3',
