@@ -113,13 +113,7 @@ function finishedLoading(bufferList) {
             'audio/rampageBallet2.mp3',
             'audio/shootingWolf.mp3',
             'audio/PowerRampage.mp3',
-            'audio/RampagePower.mp3',
-            'audio/SpeedRampage.mp3',
-            'audio/RampageSpeed.mp3',
-            'audio/ElementRampage.mp3',
-            'audio/RampageElement.mp3',
-            'audio/AllRampage.mp3',
-            'audio/RampageAll.mp3',
+            
             /*
             'audio/.mp3',
             'audio/.mp3',
