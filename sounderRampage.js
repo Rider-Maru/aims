@@ -267,6 +267,7 @@ function stopStandbyFinishSE() {
     for (const sw in onRingingStandby) {
         if (sw) isStandBy = true;
     }
+    console.log("isStandBy:"+isStandBy);
     if (!isStandBy) return;
     soundArrayCommon[2].stop();
     soundArrayCommon[2] = context.createBufferSource();
