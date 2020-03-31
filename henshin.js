@@ -128,8 +128,14 @@ function ring() {
             playSECallFinish(mySwiper.realIndex)
             AutorizeNum == 3;
         }
+        else {
+            isAuthorizable = true;
+            AutorizeNum = 1;
+            playSECallKey(mySwiper.realIndex);
+            SEstandbyStop();
+        }
     }
-    else if() {
+    else {
         isAuthorizable = true;
         AutorizeNum = 1;
         playSECallKey(mySwiper.realIndex);
