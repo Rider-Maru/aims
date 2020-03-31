@@ -191,7 +191,7 @@ function SEstandbyStop() {
     
     stopSE();
     stopStandbyFinishSE();
-    else stopStandbySE();
+    stopStandbySE();
     
 }
 
