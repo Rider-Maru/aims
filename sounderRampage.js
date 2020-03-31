@@ -230,7 +230,7 @@ function playSEFinishReady(callNum) {
     soundArrayKey[num].start(0);
     soundArrayKey[num].onended = function () {
         if (nowplaynumKey == null) return;
-        if (onRingingStandby[callNum - 1]) return;
+        if (nowplaynumKey != 1 + callNum * 2) return;
         soundArrayCommon[2].loop = true;
         soundArrayCommon[2].start(0);
         onRingingStandby[callNum] = true;
