@@ -57,7 +57,11 @@ video.addEventListener("loadedmetadata", function (e) {
     //毎フレームの実行処理
     setInterval(function (e) {
         if (mySwiper.realIndex != preSlideNum) {
+            isAuthorizable = true;
+            SEstandbyStop();
+            AutorizeNum = 1;
             playSERotate();
+            playSECallKey(1);
         }
         preSlideNum = mySwiper.realIndex;
 
@@ -137,8 +141,7 @@ function ring() {
             isAuthorizable = true;
             SEstandbyStop();
             AutorizeNum = 1;
-            playSECallKey(mySwiper.realIndex);
-            
+            playSECallKey(0);
         }
     }
     else {

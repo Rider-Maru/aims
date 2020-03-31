@@ -109,10 +109,10 @@ function finishedLoading(bufferList) {
     bufferLoader = new BufferLoader(
         context,
         [
-            'audio/ballet.mp3',
+            'audio/rampageBallet.mp3',
             'audio/shootingWolf.mp3',
             'audio/shooting.mp3',
-            'audio/dash.mp3',
+            'audio/rampageBallet2.mp3',
             'audio/rushingCheetah.mp3',
             'audio/rushing.mp3',
             /*
@@ -162,7 +162,7 @@ function playSERotate() {
     soundArrayCommon[num].connect(analyser);
     soundArrayCommon[num].start(0);
     soundArrayCommon[num] = context.createBufferSource();
-    soundArrayCommon[num].buffer = bufferListUpKey[num];
+    soundArrayCommon[num].buffer = bufferListUpCommon[num];
     soundArrayCommon[num].connect(context.destination);
 }
 
