@@ -112,7 +112,7 @@ function JudgeAutorize(value) {
 function ring() {
     if (preRingNum == mySwiper.realIndex && AutorizeNum == 2) {
         SEstandbyStop();
-        playSEBelt(mySwiper.realIndex)
+        playSECallFunction(mySwiper.realIndex);
         setTimeout(function () {
             if (onRingingStandby) isAuthorizable = true;
         }, 1000)
