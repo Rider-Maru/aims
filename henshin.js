@@ -109,6 +109,7 @@ function JudgeAutorize(value) {
 // 効果音を鳴らす（★今回のメインはこれ★）
 // ========================================
 function ring() {
+    console.log("onAuthorize" + onAuthorize + "/" + "AutorizeNum" + AutorizeNum);
     if (preRingNum != mySwiper.realIndex) {
         console.log(false);
         onAuthorize == false;
