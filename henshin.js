@@ -56,9 +56,7 @@ video.addEventListener("loadedmetadata", function (e) {
     //毎フレームの実行処理
     setInterval(function (e) {
         console.log(mySwiper.realIndex + ":" + AutorizeNum);
-        console.log("onAuthorize:" + onAuthorize + "//" + "AutorizeNum:" + AutorizeNum);
 
-        
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         var imagedata = ctx.getImageData(0, 0, canvas.width, canvas.height);
         var data = imagedata.data;
@@ -112,20 +110,12 @@ function JudgeAutorize(value) {
 // 効果音を鳴らす（★今回のメインはこれ★）
 // ========================================
 function ring() {
-    console.log("onAuthorize:" + onAuthorize + "//" + "AutorizeNum:" + AutorizeNum);
-    if (preRingNum != mySwiper.realIndex) {
-        console.log(false);
-        onAuthorize = false;
-    }
-    console.log("onAuthorize" + onAuthorize + "/" + "AutorizeNum" + AutorizeNum);
-    preRingNum = mySwiper.realIndex;
-    if (AutorizeNum == 2 && onAuthorize) {
+    if (preRingNum == mySwiper.realIndex && AutorizeNum == 2) {
         SEstandbyStop();
-        onAuthorize = false;
         playSEBelt(mySwiper.realIndex)
         setTimeout(function () {
             if (onRingingStandby) isAuthorizable = true;
-        }, 3000)
+        }, 1000)
         AutorizeNum==0;
     }
     else {
@@ -133,8 +123,8 @@ function ring() {
         AutorizeNum = 1;
         playSECallKey(mySwiper.realIndex);
         SEstandbyStop();
-
     }
+    preRingNum = mySwiper.realIndex;
 }
 
 
@@ -149,7 +139,6 @@ function ringByCamera(callNum) {
     }
     if (isRing) {
         isAuthorizable = false;
-        onAuthorize = true;
         setTimeout(function () {
             if (onRingingStandby || AutorizeNum == 3) isAuthorizable = true;
         }, 1000)
