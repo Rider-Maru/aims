@@ -190,8 +190,9 @@ function SEstandbyStop() {
     onStandBy = false;
     
     stopSE();
-    stopStandbyFinishSE();
     stopStandbySE();
+    stopStandbyFinishSE();
+    
     
 }
 
