@@ -130,10 +130,9 @@ function JudgeAutorize(value) {
 // 効果音を鳴らす（★今回のメインはこれ★）
 // ========================================
 function ring() {
-    if (preRingNum == mySwiper.realIndex) {
         if (AutorizeNum == 2) {
             SEstandbyStop();
-            playSECallFunction(mySwiper.realIndex);
+            playSECallFunction();
             setTimeout(function () {
                 if (onRingingStandby) isAuthorizable = true;
             }, 1000)
@@ -141,7 +140,9 @@ function ring() {
             AutorizeNum = 3;
         }  else if (AutorizeNum == 4) {
             SEstandbyStop();
-            playSECallFinish(mySwiper.realIndex);
+            
+            playSECallFinish(rampageNum);
+            rampageNum == 0;
             AutorizeNum = 3;
         }
         else {
@@ -150,14 +151,6 @@ function ring() {
             AutorizeNum = 1;
             playSECallKey(0);
         }
-    }
-    else {
-        isAuthorizable = true;
-        SEstandbyStop();
-        AutorizeNum = 1;
-        playSECallKey(mySwiper.realIndex);
-        
-    }
     preRingNum = mySwiper.realIndex;
 }
 

@@ -113,7 +113,13 @@ function finishedLoading(bufferList) {
             'audio/rampageBallet2.mp3',
             'audio/shootingWolf.mp3',
             'audio/powerRampage.mp3',
-            
+            'audio/RampagePower.mp3',
+            'audio/SpeedRampage.mp3',
+            'audio/RampageSpeed.mp3',
+            'audio/ElementRampage.mp3',
+            'audio/RampageElement.mp3',
+            'audio/AllRampage.mp3',
+            'audio/RampageAll.mp3',
             /*
             'audio/.mp3',
             'audio/.mp3',
@@ -165,8 +171,8 @@ function playSERotate() {
     soundArrayCommon[num].connect(context.destination);
 }
 
-function playSECallFunction(callNum) {
-    var num = 1 + callNum * 3;
+function playSECallFunction() {
+    var num = 2;
     nowplaynumKey = num;
     console.log("Function" + num);
     soundArrayKey[nowplaynumKey].connect(analyser);
