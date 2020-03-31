@@ -209,7 +209,7 @@ function playSEFinishReady(callNum) {
     soundArrayKey[num].start(0);
     soundArrayKey[num].onended = function () {
         if (nowplaynumCommon == null) return;
-        nowplaynumCommon = null;
+        stopSE();
         soundArrayCommon[2].loop = true;
         soundArrayCommon[2].start(0);
         onRingingStandby = true;

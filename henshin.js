@@ -120,7 +120,6 @@ function ring() {
             AutorizeNum == 0;
             AutorizeNum = 3;
         } else if (AutorizeNum == 3) {
-            
             SEstandbyStop();
             onStandBy = true;
             playSEFinishReady(mySwiper.realIndex);
