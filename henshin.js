@@ -112,8 +112,8 @@ function JudgeAutorize(value) {
 function ring() {
     if (preRingNum == mySwiper.realIndex) {
         if (AutorizeNum == 2) {
-            SEstandbyStop();
             playSECallFunction(mySwiper.realIndex);
+            SEstandbyStop();
             setTimeout(function () {
                 if (onRingingStandby) isAuthorizable = true;
             }, 1000)
@@ -124,8 +124,8 @@ function ring() {
             playSEFinishReady(mySwiper.realIndex);
             AutorizeNum = 4;
         } else if (AutorizeNum == 4) {
+            playSECallFinish(mySwiper.realIndex);
             SEstandbyStop();
-            playSECallFinish(mySwiper.realIndex)
             AutorizeNum == 3;
         }
         else {
