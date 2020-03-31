@@ -90,6 +90,9 @@ bufferLoader = new BufferLoader(
     [
         'audio/authorize.mp3',
         'audio/standbyLoop.mp3',
+        'audio/finishLoop.mp3',
+        'audio/finish.mp3',
+        'audio/blast.mp3',
     ],
     finishedLoading
 );
@@ -107,7 +110,7 @@ function finishedLoading(bufferList) {
         [
             'audio/ballet.mp3',
             'audio/shootingWolf.mp3',
-            'audio/shootingWolf.mp3',
+            'audio/shooting.mp3',
             'audio/dash.mp3',
             'audio/rushingCheetah.mp3',
             'audio/rushingCheetah.mp3',
@@ -159,7 +162,7 @@ function playSECallFunction(callNum) {
 function playSECallFinish(callNum) {
     var num = 2 + callNum * 3;
     stopSE();
-    nowplaynumCommon = 2;
+    nowplaynumCommon = 3;
     if (callNum == AssaultWolfNum) nowplaynumCommon = 6;
     console.log("Finish" + num);
     soundArrayCommon[nowplaynumCommon].connect(analyser);
@@ -174,10 +177,10 @@ function playSECallFinish(callNum) {
         soundArrayKey[num].onended = function () {
             if (nowplaynumKey == null) return;
             stopSE();
-            nowplaynumCommon = 3;
+            nowplaynumCommon = 4;
             nowplaynumKey = null;
-            soundArrayCommon[3].connect(analyser);
-            soundArrayCommon[3].start(0);
+            soundArrayCommon[nowplaynumCommon].connect(analyser);
+            soundArrayCommon[nowplaynumCommon].start(0);
         }
     }
 }
@@ -194,6 +197,20 @@ function playSEBelt(callNum) {
         if (nowplaynumCommon == null) return;
         soundArrayCommon[1].loop = true;
         soundArrayCommon[1].start(0);
+        onRingingStandby = true;
+    }
+}
+function playSEFinishReady(callNum) {
+    var num = callNum * 3;
+
+    nowplaynumCommon = num;
+    console.log("Belt" + num);
+    soundArrayCommon[num].connect(analyser);
+    soundArrayCommon[num].start(0);
+    soundArrayCommon[num].onended = function () {
+        if (nowplaynumCommon == null) return;
+        soundArrayCommon[2].loop = true;
+        soundArrayCommon[2].start(0);
         onRingingStandby = true;
     }
 }
