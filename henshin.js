@@ -110,8 +110,10 @@ function JudgeAutorize(value) {
 // ========================================
 function ring() {
     if (preRingNum != mySwiper.realIndex) {
+        console.log(false);
         onAuthorize == false;
     }
+    console.log("onAuthorize" + onAuthorize + "/" + "AutorizeNum" + AutorizeNum);
     preRingNum = mySwiper.realIndex;
     if (AutorizeNum == 2 && onAuthorize) {
         SEstandbyStop();
