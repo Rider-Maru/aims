@@ -112,20 +112,22 @@ function JudgeAutorize(value) {
 function ring() {
     if (preRingNum == mySwiper.realIndex) {
         if (AutorizeNum == 2) {
-            playSECallFunction(mySwiper.realIndex);
             SEstandbyStop();
+            playSECallFunction(mySwiper.realIndex);
             setTimeout(function () {
                 if (onRingingStandby) isAuthorizable = true;
             }, 1000)
             AutorizeNum == 0;
             AutorizeNum = 3;
         } else if (AutorizeNum == 3) {
+            
+            SEstandbyStop();
             onStandBy = true;
             playSEFinishReady(mySwiper.realIndex);
             AutorizeNum = 4;
         } else if (AutorizeNum == 4) {
-            playSECallFinish(mySwiper.realIndex);
             SEstandbyStop();
+            playSECallFinish(mySwiper.realIndex);
             AutorizeNum == 3;
         }
         else {
