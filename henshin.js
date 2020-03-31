@@ -55,7 +55,10 @@ video.addEventListener("loadedmetadata", function (e) {
     var ctx = canvas.getContext("2d");
     //毎フレームの実行処理
     setInterval(function (e) {
-        console.log(mySwiper.realIndex +":"+AutorizeNum)
+        console.log(mySwiper.realIndex + ":" + AutorizeNum);
+        console.log("onAuthorize:" + onAuthorize + "//" + "AutorizeNum:" + AutorizeNum);
+
+        
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
         var imagedata = ctx.getImageData(0, 0, canvas.width, canvas.height);
         var data = imagedata.data;
@@ -109,10 +112,10 @@ function JudgeAutorize(value) {
 // 効果音を鳴らす（★今回のメインはこれ★）
 // ========================================
 function ring() {
-    console.log("onAuthorize" + onAuthorize + "/" + "AutorizeNum" + AutorizeNum);
+    console.log("onAuthorize:" + onAuthorize + "//" + "AutorizeNum:" + AutorizeNum);
     if (preRingNum != mySwiper.realIndex) {
         console.log(false);
-        onAuthorize == false;
+        onAuthorize = false;
     }
     console.log("onAuthorize" + onAuthorize + "/" + "AutorizeNum" + AutorizeNum);
     preRingNum = mySwiper.realIndex;
