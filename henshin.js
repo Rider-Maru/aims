@@ -127,7 +127,7 @@ function ring() {
         } else if (AutorizeNum == 4) {
             SEstandbyStop();
             playSECallFinish(mySwiper.realIndex);
-            AutorizeNum == 3;
+            AutorizeNum = 3;
         }
         else {
             isAuthorizable = true;

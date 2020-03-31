@@ -245,7 +245,7 @@ function stopStandbyFinishSE() {
     if (!onRingingStandby) return;
     soundArrayCommon[2].stop();
     soundArrayCommon[2] = context.createBufferSource();
-    soundArrayCommon[2].buffer = bufferListUpCommon[1];
+    soundArrayCommon[2].buffer = bufferListUpCommon[2];
     soundArrayCommon[2].connect(context.destination);
     onRingingStandby = false;
 }
