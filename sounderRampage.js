@@ -232,7 +232,7 @@ function playSEFinishReady(callNum) {
         if (nowplaynumKey == null) return;
         soundArrayCommon[2].loop = true;
         soundArrayCommon[2].start(0);
-        onRingingStandby[num] = true;
+        onRingingStandby[callNum] = true;
     }
 }
 
