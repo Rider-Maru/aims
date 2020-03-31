@@ -129,7 +129,7 @@ function ring() {
             AutorizeNum == 3;
         }
     }
-    else {
+    else if() {
         isAuthorizable = true;
         AutorizeNum = 1;
         playSECallKey(mySwiper.realIndex);
