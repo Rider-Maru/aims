@@ -260,7 +260,7 @@ function stopStandbySE() {
     soundArrayCommon[1].buffer = bufferListUpCommon[1];
     soundArrayCommon[1].connect(context.destination);
 
-    onRingingStandby = false;
+    onRingingStandby=[false,false,false,false,false];
 }
 function stopStandbyFinishSE() {
     var isStandBy = false;
@@ -272,5 +272,5 @@ function stopStandbyFinishSE() {
     soundArrayCommon[2] = context.createBufferSource();
     soundArrayCommon[2].buffer = bufferListUpCommon[2];
     soundArrayCommon[2].connect(context.destination);
-    onRingingStandby = false;
+    onRingingStandby = [false, false, false, false, false];
 }
