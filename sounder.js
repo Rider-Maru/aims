@@ -113,7 +113,7 @@ function finishedLoading(bufferList) {
             'audio/shooting.mp3',
             'audio/dash.mp3',
             'audio/rushingCheetah.mp3',
-            'audio/rushingCheetah.mp3',
+            'audio/rushing.mp3',
             /*
             'audio/.mp3',
             'audio/.mp3',
