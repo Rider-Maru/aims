@@ -58,6 +58,11 @@ video.addEventListener("loadedmetadata", function (e) {
     var ctx = canvas.getContext("2d");
     //毎フレームの実行処理
     setInterval(function (e) {
+
+        for (const property in onRingingStandby) {
+            console.log(`${property}: ${onRingingStandby[property]}`);
+        }
+
         if (mySwiper.realIndex != preSlideNum) {
             SEstandbyStop();
             playSERotate();
