@@ -266,7 +266,7 @@ function stopStandbyFinishSE() {
     var isStandBy = false;
     for (const sw in onRingingStandby) {
         console.log(`${sw}: ${onRingingStandby[sw]}`);
-        if (sw) isStandBy = true;
+        if (onRingingStandby[sw]) isStandBy = true;
     }
     console.log("isStandBy:"+isStandBy);
     if (!isStandBy) return;
