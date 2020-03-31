@@ -61,7 +61,7 @@ video.addEventListener("loadedmetadata", function (e) {
         if (mySwiper.realIndex != preSlideNum) {
             SEstandbyStop();
             playSERotate();
-            if (AutorizeNum == 3) {
+            if (AutorizeNum >= 3) {
                 rampageNum++;
                 if (rampageNum > 4) rampageNum = 4;
                 SEstandbyStop();
