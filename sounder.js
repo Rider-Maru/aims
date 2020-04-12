@@ -106,7 +106,6 @@ bufferLoader = new BufferLoader(
         'audio/finishBurn.mp3',
         'audio/burningExplosion.mp3',
         'audio/burningRush.mp3',
-        'audio/assaultCharge.mp3',
     ],
     finishedLoading
 );
@@ -140,6 +139,7 @@ function finishedLoading(bufferList) {
             'audio/infernoWing.mp3',
             'audio/burningFalcon.mp3',
             'audio/burningRain.mp3',
+            'audio/assaultCharge.mp3',
             /*
             'audio/.mp3',
             'audio/.mp3',
@@ -233,7 +233,9 @@ function playSEBelt(callNum) {
 }
 function playSEFinishReady(callNum) {
     var num = callNum * 3;
-    if (callNum == AssaultWolfNum) num = 15;
+    ///要注意！！！！
+    ///KeyNumのラストに設定
+    if (callNum == AssaultWolfNum) num = soundArrayKey.length;
     nowplaynumKey = num;
     console.log("Belt" + num);
     soundArrayKey[num].connect(analyser);
