@@ -235,7 +235,7 @@ function playSEFinishReady(callNum) {
     var num = callNum * 3;
     ///要注意！！！！
     ///KeyNumのラストに設定
-    if (callNum == AssaultWolfNum) num = soundArrayKey.length;
+    if (callNum == AssaultWolfNum) num = soundArrayKey.length-1;
     nowplaynumKey = num;
     console.log("Belt" + num);
     soundArrayKey[num].connect(analyser);
