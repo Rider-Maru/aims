@@ -171,7 +171,7 @@ function playSESetBelt(isAuthorize) {
     soundArrayCommon[num].connect(analyser);
     soundArrayCommon[num].start(0);
     soundArrayCommon[num] = context.createBufferSource();
-    soundArrayCommon[num].buffer = bufferListUpKey[num];
+    soundArrayCommon[num].buffer = bufferListUpCommon[num];
     soundArrayCommon[num].connect(context.destination);
 }
 
