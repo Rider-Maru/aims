@@ -106,6 +106,8 @@ bufferLoader = new BufferLoader(
         'audio/finishBurn.mp3',
         'audio/burningExplosion.mp3',
         'audio/burningRush.mp3',
+        'audio/in.mp3',
+        'audio/out.mp3',
     ],
     finishedLoading
 );
@@ -162,6 +164,17 @@ function finishedLoading(bufferList) {
     }
 }
 
+function playSESetBelt(isAuthorize) {
+    var num = 15;
+    if (!isAuthorize) num++;
+
+    soundArrayCommon[num].connect(analyser);
+    soundArrayCommon[num].start(0);
+    soundArrayCommon[num] = context.createBufferSource();
+    soundArrayCommon[num].buffer = bufferListUpKey[num];
+    soundArrayCommon[num].connect(context.destination);
+}
+
 function playSECallKey(callNum) {
     if (soundArrayKey[0] == null) {
         alert('オーディオデータをロード中です');
@@ -185,11 +198,13 @@ function playSECallFunction(callNum) {
     soundArrayKey[nowplaynumKey].start(0);
 }
 
-function playSECallFinish(callNum) {
+function playSECallFinish(callNum,isAuthorize) {
     var num = 2 + callNum * 3;
+    
     stopSE();
     nowplaynumCommon = 3;
     if (callNum == burningNum) nowplaynumCommon = 12;
+    
     console.log("Finish" + num);
     soundArrayCommon[nowplaynumCommon].connect(analyser);
     soundArrayCommon[nowplaynumCommon].start(0);
@@ -205,7 +220,8 @@ function playSECallFinish(callNum) {
             stopSE();
             nowplaynumCommon = 4;
             if (callNum == AssaultWolfNum) nowplaynumCommon = 8;
-            else if (callNum == burningNum)nowplaynumCommon = 13;
+            else if (callNum == burningNum) nowplaynumCommon = 13;
+            if (isAuthorize) nowplaynumCommon++;
             nowplaynumKey = null;
             soundArrayCommon[nowplaynumCommon].connect(analyser);
             soundArrayCommon[nowplaynumCommon].start(0);
