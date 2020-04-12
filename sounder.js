@@ -271,7 +271,7 @@ function stopStandbySE() {
     if (!onRingingStandby) return;
     soundArrayCommon[nowplaynumCommonLoop].stop();
     soundArrayCommon[nowplaynumCommonLoop] = context.createBufferSource();
-    soundArrayCommon[nowplaynumCommonLoop].buffer = bufferListUpCommon[1];
+    soundArrayCommon[nowplaynumCommonLoop].buffer = bufferListUpCommon[nowplaynumCommonLoop];
     soundArrayCommon[nowplaynumCommonLoop].connect(context.destination);
 
     onRingingStandby = false;
@@ -280,7 +280,7 @@ function stopStandbyFinishSE() {
     if (!onRingingStandby) return;
     soundArrayCommon[nowplaynumFinishLoop].stop();
     soundArrayCommon[nowplaynumFinishLoop] = context.createBufferSource();
-    soundArrayCommon[nowplaynumFinishLoop].buffer = bufferListUpCommon[2];
+    soundArrayCommon[nowplaynumFinishLoop].buffer = bufferListUpCommon[nowplaynumFinishLoop];
     soundArrayCommon[nowplaynumFinishLoop].connect(context.destination);
     onRingingStandby = false;
 }
