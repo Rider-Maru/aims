@@ -5,9 +5,12 @@ var bufferListUpKey = [];
 var nowplay;
 var nowplaynumKey;
 var nowplaynumCommon;
+var nowplaynumCommonLoop;
+var nowplaynumFinishLoop;
 var onRingingStandby = false;
 
-var AssaultWolfNum= 2;
+var AssaultWolfNum = 2;
+var burningNum = 5;
 
     function BufferLoader(context, urlList, callback) {
         this.context = context;
@@ -94,6 +97,15 @@ bufferLoader = new BufferLoader(
         'audio/finish.mp3',
         'audio/blast.mp3',
         'audio/blastFever.mp3',
+        'audio/overrize.mp3',
+        'audio/finishLoopAssault.mp3',
+        'audio/blastAssault.mp3',
+        'audio/blastFeverAssault.mp3',
+        'audio/burnrize.mp3',
+        'audio/standbyLoopBurn.mp3',
+        'audio/finishBurn.mp3',
+        'audio/burningExplosion.mp3',
+        'audio/burningRush.mp3',
     ],
     finishedLoading
 );
@@ -176,7 +188,7 @@ function playSECallFinish(callNum) {
     var num = 2 + callNum * 3;
     stopSE();
     nowplaynumCommon = 3;
-    if (callNum == AssaultWolfNum) nowplaynumCommon = 6;
+    if (callNum == burningNum) nowplaynumCommon = 12;
     console.log("Finish" + num);
     soundArrayCommon[nowplaynumCommon].connect(analyser);
     soundArrayCommon[nowplaynumCommon].start(0);
@@ -191,6 +203,8 @@ function playSECallFinish(callNum) {
             if (nowplaynumKey == null) return;
             stopSE();
             nowplaynumCommon = 4;
+            if (callNum == AssaultWolfNum) nowplaynumCommon = 8;
+            else if (callNum == burningNum)nowplaynumCommon = 13;
             nowplaynumKey = null;
             soundArrayCommon[nowplaynumCommon].connect(analyser);
             soundArrayCommon[nowplaynumCommon].start(0);
@@ -200,7 +214,8 @@ function playSECallFinish(callNum) {
 
 function playSEBelt(callNum) {
     var num = 0;
-    if (callNum == AssaultWolfNum) num = 5;
+    if (callNum == AssaultWolfNum) num = 6;
+    else if (callNum == burningNum) num = 10;
 
     nowplaynumCommon = num;
     console.log("Belt" + num);
@@ -208,8 +223,10 @@ function playSEBelt(callNum) {
     soundArrayCommon[num].start(0);
     soundArrayCommon[num].onended = function () {
         if (nowplaynumCommon == null) return;
-        soundArrayCommon[1].loop = true;
-        soundArrayCommon[1].start(0);
+        nowplaynumCommonLoop = 1;
+        if (callNum == burningNum) nowplaynumCommonLoop = 11;
+        soundArrayCommon[nowplaynumCommonLoop].loop = true;
+        soundArrayCommon[nowplaynumCommonLoop].start(0);
         onRingingStandby = true;
     }
 }
@@ -222,8 +239,10 @@ function playSEFinishReady(callNum) {
     soundArrayKey[num].start(0);
     soundArrayKey[num].onended = function () {
         if (nowplaynumKey == null) return;
-        soundArrayCommon[2].loop = true;
-        soundArrayCommon[2].start(0);
+        nowplaynumFinishLoop = 2;
+        if (callNum == AssaultWolfNum) nowplaynumFinishLoop = 7;
+        soundArrayCommon[nowplaynumFinishLoop].loop = true;
+        soundArrayCommon[nowplaynumFinishLoop].start(0);
         onRingingStandby = true;
     }
 }
@@ -247,18 +266,18 @@ function stopSE() {
 
 function stopStandbySE() {
     if (!onRingingStandby) return;
-    soundArrayCommon[1].stop();
-    soundArrayCommon[1] = context.createBufferSource();
-    soundArrayCommon[1].buffer = bufferListUpCommon[1];
-    soundArrayCommon[1].connect(context.destination);
+    soundArrayCommon[nowplaynumCommonLoop].stop();
+    soundArrayCommon[nowplaynumCommonLoop] = context.createBufferSource();
+    soundArrayCommon[nowplaynumCommonLoop].buffer = bufferListUpCommon[1];
+    soundArrayCommon[nowplaynumCommonLoop].connect(context.destination);
 
     onRingingStandby = false;
 }
 function stopStandbyFinishSE() {
     if (!onRingingStandby) return;
-    soundArrayCommon[2].stop();
-    soundArrayCommon[2] = context.createBufferSource();
-    soundArrayCommon[2].buffer = bufferListUpCommon[2];
-    soundArrayCommon[2].connect(context.destination);
+    soundArrayCommon[nowplaynumFinishLoop].stop();
+    soundArrayCommon[nowplaynumFinishLoop] = context.createBufferSource();
+    soundArrayCommon[nowplaynumFinishLoop].buffer = bufferListUpCommon[2];
+    soundArrayCommon[nowplaynumFinishLoop].connect(context.destination);
     onRingingStandby = false;
 }
