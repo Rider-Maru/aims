@@ -91,7 +91,7 @@ function JudgeAutorize(value) {
     if (value < threshold) {
         if (!onAuthorize) {
             onAuthorize = true;
-            if (AutorizeNum == 3) playSESetBelt(onAuthorize);
+            if (AutorizeNum == 3 || AutorizeNum == 4) playSESetBelt(onAuthorize);
             document.getElementById("debug_bool").textContent = "true";
         }
  
@@ -99,7 +99,7 @@ function JudgeAutorize(value) {
     else {
         if (onAuthorize) {
             onAuthorize = false;
-            if (AutorizeNum == 3) playSESetBelt(onAuthorize);
+            if (AutorizeNum == 3 || AutorizeNum == 4) playSESetBelt(onAuthorize);
             ringByCamera(1);
             document.getElementById("debug_bool").textContent = "false";
         }
