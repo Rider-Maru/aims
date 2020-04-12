@@ -122,8 +122,14 @@ function ring() {
         } else if (AutorizeNum == 3) {
             SEstandbyStop();
             onStandBy = true;
-            playSEFinishReady(mySwiper.realIndex);
-            AutorizeNum = 4;
+            if (mySwiper.realIndex == burningNum) {
+                playSECallFinish(mySwiper.realIndex);
+                AutorizeNum = 3;
+            }
+            else {
+                playSEFinishReady(mySwiper.realIndex);
+                AutorizeNum = 4;
+            }
         } else if (AutorizeNum == 4) {
             SEstandbyStop();
             playSECallFinish(mySwiper.realIndex);

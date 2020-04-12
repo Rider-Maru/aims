@@ -106,6 +106,7 @@ bufferLoader = new BufferLoader(
         'audio/finishBurn.mp3',
         'audio/burningExplosion.mp3',
         'audio/burningRush.mp3',
+        'audio/assaultCharge.mp3',
     ],
     finishedLoading
 );
@@ -232,7 +233,7 @@ function playSEBelt(callNum) {
 }
 function playSEFinishReady(callNum) {
     var num = callNum * 3;
-
+    if (callNum == AssaultWolfNum) num = 15;
     nowplaynumKey = num;
     console.log("Belt" + num);
     soundArrayKey[num].connect(analyser);
